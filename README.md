@@ -20,7 +20,7 @@ Predicting the onset of diabetes from routine clinical measurements, with a focu
 ![Model comparison](reports/figures/model_comparison.png)
 
 More complex models did **not** outperform logistic regression on this small dataset.
-We selected balanced logistic regression for its highest recall and ROC-AUC, plus its simplicity and interpretability.
+The balanced logistic regression was selected for its highest recall and ROC-AUC, simplicity and interpretability.
 
 ### Final evaluation on the held-out test set (n = 154)
 
@@ -31,7 +31,6 @@ Test results are consistent with cross-validation.
 
 ### What drives the prediction?
 
-
 ![Coefficients](reports/figures/coefficients.png)
 
 **Glucose** (odds ratio ≈ 3.3 per standard deviation) and **BMI** (≈ 2.0) are the strongest predictors,
@@ -41,7 +40,7 @@ because it overlaps with Glucose and ~47% of its values are missing.
 ## Approach
 
 1. **Hidden missing values.** The dataset reports no nulls, but zeros in Glucose, BloodPressure,
-   SkinThickness, Insulin, and BMI are physiologically impossible. They were converted to missing values
+   SkinThickness, Insulin and BMI are physiologically impossible. They were converted to missing values
    (Insulin: 48.7% missing, SkinThickness: 29.6%).
 2. **No data leakage.** Imputation (median) and scaling are inside a scikit-learn `Pipeline`,
    fitted on training data only, including within each cross-validation fold.
