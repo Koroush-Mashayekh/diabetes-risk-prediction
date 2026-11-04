@@ -3,9 +3,9 @@
 Predicting the onset of diabetes from routine clinical measurements, with a focus on
 **correct preprocessing, leakage-free evaluation, and model interpretability**.
 
-**Dataset:** Pima Indians Diabetes Database (768 patients, 8 clinical features)
-**Final model:** Logistic Regression (class-balanced) in a scikit-learn pipeline
-**Test set performance:** ROC-AUC **0.81** · Recall **0.70** · Accuracy **0.73**
+- **Dataset:** Pima Indians Diabetes Database (768 patients, 8 clinical features)
+- **Final model:** Logistic Regression (class-balanced) in a scikit-learn pipeline
+- **Test set performance:** ROC-AUC **0.81** · Recall **0.70** · Accuracy **0.73**
 
 ## Key results
 
@@ -20,7 +20,7 @@ Predicting the onset of diabetes from routine clinical measurements, with a focu
 ![Model comparison](reports/figures/model_comparison.png)
 
 More complex models did **not** outperform logistic regression on this small dataset.
-The balanced logistic regression was selected for its highest recall and ROC-AUC, simplicity and interpretability.
+We selected balanced logistic regression for its highest recall and ROC-AUC, plus its simplicity and interpretability.
 
 ### Final evaluation on the held-out test set (n = 154)
 
@@ -41,7 +41,7 @@ because it overlaps with Glucose and ~47% of its values are missing.
 ## Approach
 
 1. **Hidden missing values.** The dataset reports no nulls, but zeros in Glucose, BloodPressure,
-   SkinThickness, Insulin and BMI are physiologically impossible. They were converted to missing values
+   SkinThickness, Insulin, and BMI are physiologically impossible. They were converted to missing values
    (Insulin: 48.7% missing, SkinThickness: 29.6%).
 2. **No data leakage.** Imputation (median) and scaling are inside a scikit-learn `Pipeline`,
    fitted on training data only, including within each cross-validation fold.
@@ -63,7 +63,6 @@ diabetes-risk-prediction/
 │   ├── 02_modeling.ipynb         # pipeline, baseline, model comparison
 │   └── 03_evaluation.ipynb       # test set evaluation and interpretation
 ├── reports/figures/              # figures used in this README
-
 ├── LICENSE
 └── README.md
 ```
